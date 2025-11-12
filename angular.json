@@ -69,6 +69,18 @@
           },
           "defaultConfiguration": "development"
         },
+        "serve-ssr": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "note-app:build:production"
+            },
+            "development": {
+              "buildTarget": "note-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
         },

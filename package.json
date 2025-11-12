@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "dev:ssr": "ng run note-app:serve-ssr",
+    "build:ssr": "ng build --server-application",
+    "serve:ssr": "node dist/note-app/server/server.mjs",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
