@@ -36,15 +36,30 @@ app.use(
 );
 
 /**
- * Handle all other requests by rendering the Angular application.
+ * Handle all requests (including empty route '/' and root) by rendering the Angular application.
+ * This middleware catches all routes and lets Angular Router handle them.
+ * Using app.use() without a path matches all routes including root '/' and empty route ''.
+ * Static files are already handled by the express.static middleware above.
  */
-app.use((req, res, next) => {
+app.use((req, res) => {
   angularApp
     .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
-    .catch(next);
+    .then((response) => {
+      if (response) {
+        writeResponseToNodeResponse(response, res);
+      } else {
+        // If no response, send 404
+        if (!res.headersSent) {
+          res.status(404).send('Not found');
+        }
+      }
+    })
+    .catch((err) => {
+      console.error('Error rendering Angular app:', err);
+      if (!res.headersSent) {
+        res.status(500).send('Internal server error');
+      }
+    });
 });
 
 /**

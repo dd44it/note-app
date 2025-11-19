@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "dev:ssr": "ng run note-app:serve-ssr",
-    "build:ssr": "ng build --server-application",
+    "build:ssr": "ng build",
     "serve:ssr": "node dist/note-app/server/server.mjs",
     "start": "ng serve",
     "build": "ng build",

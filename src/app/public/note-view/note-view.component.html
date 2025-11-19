@@ -1,0 +1,4 @@
+<ng-container *ngIf="note$ | async as note">
+  <h1>{{ note.title }}</h1>
+  <p>{{ note.content }}</p>
+</ng-container>
