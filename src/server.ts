@@ -68,14 +68,14 @@ app.use((req, res) => {
  */
 if (isMainModule(import.meta.url) || process.env['pm_id']) {
   const port = process.env['PORT'] || 4000;
-  app.listen(port, (error) => {
-    if (error) {
-      throw error;
-    }
 
-    console.log(`Node Express server listening on http://localhost:${port}`);
+  app.listen(port, () => {
+    console.log(`SSR server running on http://localhost:${port}`);
+  }).on('error', (err) => {
+    console.error('Server failed to start:', err);
   });
 }
+
 
 /**
  * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
