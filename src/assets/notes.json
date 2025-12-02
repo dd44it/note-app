@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "category": "Angular",
+    "title": "How Angular Signals Work",
+    "content": "Signals provide a fine-grained reactivity system that updates only what is necessary, without zones or full component tree change detection."
+  },
+  {
+    "id": 2,
+    "category": "RxJS",
+    "title": "When to use RxJS vs Signals",
+    "content": "Use Signals for local UI state, use RxJS for async streams, backend communication, and multi-step pipelines."
+  },
+  {
+    "id": 3,
+    "category": "Performance",
+    "title": "How to optimize Angular app",
+    "content": "Lazy-loaded routes, OnPush, Signals, async pipes, memoized selectors, and avoiding big loops inside templates."
+  }
+]
