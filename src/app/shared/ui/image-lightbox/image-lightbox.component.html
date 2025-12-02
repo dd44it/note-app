@@ -1,0 +1,12 @@
+<div class="overlay" (click)="closeLightbox()">
+  <div class="box" (click)="$event.stopPropagation()">
+
+    <img [src]="current.url" [alt]="current.author" />
+
+    <button class="close-btn" (click)="closeLightbox()">✕</button>
+
+    <button class="nav-btn left" (click)="prev()" [disabled]="index === 0">←</button>
+    <button class="nav-btn right" (click)="next()" [disabled]="index === images.length - 1">→</button>
+
+  </div>
+</div>

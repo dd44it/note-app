@@ -1,0 +1,8 @@
+<div class="img-card" (click)="openImage()">
+  <img [src]="image.url" [alt]="image.author" />
+
+  <div class="img-info">
+    <span>{{ image.author }}</span>
+    <a [href]="image.link" (click)="$event.stopPropagation()" target="_blank">↗</a>
+  </div>
+</div>

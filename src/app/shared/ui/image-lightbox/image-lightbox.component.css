@@ -1,0 +1,73 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 9999;
+}
+
+.box {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box img {
+  max-width: 100%;
+  max-height: 750px;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(50,50,50,0.7);
+  border: none;
+  color: white;
+  font-size: 20px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Navigation arrows */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(50,50,50,0.7);
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.nav-btn.left {
+  left: -50px;
+}
+
+.nav-btn.right {
+  right: -50px;
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
