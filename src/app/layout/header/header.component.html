@@ -1,0 +1,17 @@
+<header class="top-nav">
+  <div class="nav-container">
+    <a routerLink="/" class="nav-logo">NoteApp</a>
+
+    <nav class="nav-links" [class.open]="menuOpen">
+      <a routerLink="/" routerLinkActive="active" (click)="closeMenu()">Home</a>
+      <a routerLink="/blog" routerLinkActive="active" (click)="closeMenu()">Blog</a>
+      <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact Us</a>
+      <a routerLink="/games" routerLinkActive="active" (click)="closeMenu()">Games</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="burger" (click)="toggleMenu()">☰</button>
+      <app-theme-toggle></app-theme-toggle>
+    </div>
+  </div>
+</header>
