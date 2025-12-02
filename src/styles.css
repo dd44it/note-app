@@ -1,1 +1,82 @@
-/* You can add global styles to this file, and also import other style files */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --card-bg: #f8f8f8;
+  --card-border: #e2e2e2;
+  --primary: #2563eb;
+}
+
+
+html[data-theme='dark'] {
+  --bg: #121212;
+  --fg: #e6e6e6;
+  --text: #f1f1f1;
+  --card-bg: #1c1c1c;
+  --card-border: #333;
+  --card-shadow: rgba(0, 0, 0, 0.4);
+  --link: #64a4ff;
+  --subtitle: #bbbbbb;
+}
+
+/* ---------- GENERAL UI ---------- */
+a {
+  color: var(--link);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+  Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.25s ease;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.main-content {
+  flex: 1;
+}
+
+img, picture, video, canvas {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+  font-size: 100%;
+}
+
+ul, ol {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+}
+
