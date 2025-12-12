@@ -16,5 +16,11 @@
     "category": "Performance",
     "title": "How to optimize Angular app",
     "content": "Lazy-loaded routes, OnPush, Signals, async pipes, memoized selectors, and avoiding big loops inside templates."
+  },
+  {
+    "id": 4,
+    "category": "Performance",
+    "title": "How you can share date between component",
+    "content": "Sharing data between components is a very common task in Angular applications,\nand choosing the right approach is critical for performance, scalability,\nand maintainability.\n\n1) Parent → Child (Input)\nUse @Input() when data flows in one direction.\nThis is the most performant and recommended approach for UI composition.\n\n2) Child → Parent (Output)\nUse @Output() with EventEmitter when a child component needs to notify\nits parent about user actions or state changes.\n\n3) Sibling Components (Service + Observable)\nFor components without a direct relationship, use a shared service with\nBehaviorSubject or Signal.\nThis keeps state centralized and avoids unnecessary re-renders.\n\n4) Application-wide State (Signals / Store)\nFor larger apps, Angular Signals or state libraries (NgRx, Akita) help\nmanage global data efficiently and predictably.\n\nPerformance tip:\nAvoid passing large objects through Inputs frequently.\nPrefer immutable updates and OnPush change detection.\n\nIn SSR applications, services are instantiated per request,\nwhich makes this approach safe and SEO-friendly when combined\nwith TransferState for caching."
   }
 ]
