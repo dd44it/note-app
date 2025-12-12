@@ -9,6 +9,8 @@ import fs from "fs";
 import path from "path";
 
 import express from 'express';
+import type { Request, Response } from 'express';
+
 import { join } from 'node:path';
 
 const app = express();
@@ -24,28 +26,29 @@ app.use(
     redirect: false,
   }),
 );
-app.get('/api/public-notes', (req, res) => {
-  const filePath = path.join(process.cwd(), 'dist/note-app/browser/assets/notes.json');
-  const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-  res.json(data);
+app
+  .get('/api/public-notes', (req: Request, res: Response) => {
+    const filePath = path.join(process.cwd(), 'dist/note-app/browser/assets/notes.json');
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    res.json(data);
 })
-  .get('/api/public-notes/:id', (req, res) => {
-  const id = Number(req.params.id);
+  .get('/api/public-notes/:id', (req: Request, res: Response) => {
+    const id = Number(req.params['id']);
 
-  const notes = [
-    { id: 1, title: 'Angular SSR Rocks', content: 'Server-side rendering demo...', public: true },
-    { id: 2, title: 'Why SSR matters', content: 'SEO, performance, caching hhhh...', public: true }
-  ];
+    const notes = [
+      { id: 1, title: 'Angular SSR Rocks', content: 'Server-side rendering demo...', public: true },
+      { id: 2, title: 'Why SSR matters', content: 'SEO, performance, caching hhhh...', public: true }
+    ];
 
-  const note = notes.find(n => n.id === id);
+    const note = notes.find(n => n.id === id);
 
-  if (!note) {
-    return res.status(404).json({ message: 'Not found' });
-  }
+    if (!note) {
+      return res.status(404).json({ message: 'Not found' });
+    }
 
-  return res.json(note);
+    return res.json(note);
 })
-.get('/api/random-images', async (req, res) => {
+.get('/api/random-images', async (req: Request, res: Response) => {
   try {
     const count = Number(req.query['count'] ?? 8);
 
@@ -83,7 +86,7 @@ app.get('/api/public-notes', (req, res) => {
   }
 });
 
-app.use((req, res) => {
+app.use((req: Request, res: Response) => {
   angularApp.handle(req)
     .then(response => {
       if (!response) {
