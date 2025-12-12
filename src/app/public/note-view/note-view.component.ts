@@ -1,19 +1,34 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { NotesService } from '../../shared/notes.service';
-import { switchMap } from 'rxjs/operators';
+import { TransferState, makeStateKey } from '@angular/core';
+import { Observable, of, switchMap, tap } from 'rxjs';
 
 @Component({
-  standalone: true,
   selector: 'app-note-view',
+  standalone: true,
+  imports: [AsyncPipe, NgIf],
   templateUrl: './note-view.component.html',
-  imports: [CommonModule]
 })
 export class NoteViewComponent {
-  private notesService = inject(NotesService);
+
+  private http = inject(HttpClient);
   private route = inject(ActivatedRoute);
-  note$ = inject(ActivatedRoute).params.pipe(
-    switchMap(params => inject(NotesService).getNoteById(+params['id']))
+  private state = inject(TransferState);
+
+  note$: Observable<any> = this.route.paramMap.pipe(
+    switchMap(params => {
+      const id = Number(params.get('id'));
+
+      const KEY = makeStateKey<any>('note-' + id);
+
+      const cached = this.state.get(KEY, null);
+      if (cached) return of(cached);
+
+      return this.http.get(`/api/public-notes/${id}`).pipe(
+        tap(note => this.state.set(KEY, note))
+      );
+    })
   );
 }

@@ -13,14 +13,6 @@ import { ImageCardComponent } from '../../shared/ui/image-card/image-card.compon
 import { ImageLightboxComponent } from '../../shared/ui/image-lightbox/image-lightbox.component';
 import { NotesService, PublicNote } from '../../core/services/notes/notes.service';
 
-// interface PublicNote {
-//   id: number;
-//   title: string;
-//   content: string;
-//   public?: boolean;
-//   createdAt?: string;
-// }
-
 const HOME_NOTES_KEY = makeStateKey<PublicNote[]>('home-public-notes');
 
 @Component({

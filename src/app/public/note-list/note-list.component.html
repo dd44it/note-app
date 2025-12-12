@@ -1,6 +1,9 @@
 <h2>Public Notes</h2>
+
 <ul>
   <li *ngFor="let note of notes$ | async">
-    <a [routerLink]="['/note', note.id]">{{ note.title }}</a>
+    <a [routerLink]="['/note', note.id]">
+      {{ note.title }}
+    </a>
   </li>
 </ul>
