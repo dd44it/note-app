@@ -1,6 +1,5 @@
-<ng-container *ngIf="note$ | async as note">
+@if (note$ | async; as note) {
   <h2>{{ note.title }}</h2>
   <p>{{ note.content }}</p>
-
   <a routerLink="/">⬅ Back to notes</a>
-</ng-container>
+}

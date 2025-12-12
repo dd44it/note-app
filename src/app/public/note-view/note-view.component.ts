@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { TransferState, makeStateKey } from '@angular/core';
 import { Observable, of, switchMap, tap } from 'rxjs';
@@ -8,7 +8,7 @@ import { Observable, of, switchMap, tap } from 'rxjs';
 @Component({
   selector: 'app-note-view',
   standalone: true,
-  imports: [AsyncPipe, NgIf],
+  imports: [AsyncPipe],
   templateUrl: './note-view.component.html',
 })
 export class NoteViewComponent {

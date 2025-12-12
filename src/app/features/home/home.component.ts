@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { TransferState, makeStateKey } from '@angular/core';
@@ -18,7 +18,7 @@ const HOME_NOTES_KEY = makeStateKey<PublicNote[]>('home-public-notes');
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, NgIf, NgFor, AsyncPipe, ThemeToggleComponent, HeaderComponent, ImageCardComponent, ImageLightboxComponent],
+  imports: [RouterLink, AsyncPipe, ThemeToggleComponent, HeaderComponent, ImageCardComponent, ImageLightboxComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })

@@ -14,11 +14,10 @@
       </p>
 
       <!-- FEATURED NOTE -->
-      <ng-container *ngIf="notesStats$ | async as stats">
-        <ng-container *ngIf="stats.latest as latest">
+      @if (notesStats$ | async; as stats) {
+        @if (stats.latest; as latest) {
           <div class="featured">
             <h3>Featured Note</h3>
-
             <a [routerLink]="['/note', latest.id]" class="featured-card">
               <div class="note-content">
                 <h4>{{ latest.title }}</h4>
@@ -26,8 +25,8 @@
               </div>
             </a>
           </div>
-        </ng-container>
-      </ng-container>
+        }
+      }
     </div>
   </section>
 
@@ -36,26 +35,32 @@
     <div class="container">
       <h3>Latest Notes</h3>
 
-      <ng-container *ngIf="notes$ | async as notes; else noNotes">
-        <div class="notes-grid" *ngIf="notes.length > 0; else noNotes">
-          <div *ngFor="let note of notes" class="note-card">
-            <div class="note-content">
-              <h4>{{ note.title }}</h4>
-              <p>{{ note.content }}</p>
-
-              <a [routerLink]="['/note', note.id]" class="read-more">
-                Read →
-              </a>
-            </div>
+      @if (notes$ | async; as notes) {
+        @if (notes.length > 0) {
+          <div class="notes-grid">
+            @for (note of notes; track note) {
+              <div class="note-card">
+                <div class="note-content">
+                  <h4>{{ note.title }}</h4>
+                  <p>{{ note.content }}</p>
+                  <a [routerLink]="['/note', note.id]" class="read-more">
+                    Read →
+                  </a>
+                </div>
+              </div>
+            }
           </div>
-        </div>
-      </ng-container>
-
-      <ng-template #noNotes>
+        } @else {
+          <p class="empty-state">
+            No notes yet. Add your first one to see it here ✍️
+          </p>
+        }
+      } @else {
         <p class="empty-state">
           No notes yet. Add your first one to see it here ✍️
         </p>
-      </ng-template>
+      }
+
     </div>
   </section>
 
@@ -65,22 +70,24 @@
       <h2>Inspiration Gallery</h2>
 
       <div class="images-grid">
-        <ui-image-card
-          *ngFor="let img of inspiration$ | async; let i = index"
-          [image]="img"
-          (open)="openLightbox(i)">
-        </ui-image-card>
+        @for (img of inspiration$ | async; track img; let i = $index) {
+          <ui-image-card
+            [image]="img"
+            (open)="openLightbox(i)">
+          </ui-image-card>
+        }
       </div>
     </div>
   </section>
 
   <!-- LIGHTBOX -->
-  <ui-image-lightbox
-    *ngIf="lightboxOpen"
-    [images]="images"
-    [index]="lightboxIndex"
-    (close)="lightboxOpen = false">
-  </ui-image-lightbox>
+  @if (lightboxOpen) {
+    <ui-image-lightbox
+      [images]="images"
+      [index]="lightboxIndex"
+      (close)="lightboxOpen = false">
+    </ui-image-lightbox>
+  }
 </div>
 
 <!-- FOOTER -->

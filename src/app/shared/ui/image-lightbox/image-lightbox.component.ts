@@ -1,11 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CommonModule, NgIf } from '@angular/common';
+
 import { InspirationImage } from '../../../core/services/inspiration/inspiration.service';
 
 @Component({
   selector: 'ui-image-lightbox',
   standalone: true,
-  imports: [NgIf, CommonModule],
+  imports: [],
   templateUrl: './image-lightbox.component.html',
   styleUrls: ['./image-lightbox.component.css']
 })
