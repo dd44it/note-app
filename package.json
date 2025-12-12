@@ -3,10 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "start": "ng serve",
+
     "build": "ng build",
-    "dev:ssr": "ng serve",
-    "build:ssr": "ng build",
-    "start:ssr": "node dist/note-app/server/server.mjs"
+
+    "build:ssr": "ng build --configuration production",
+
+    "serve:ssr": "node dist/note-app/server/server.mjs",
+
+    "start:ssr": "npm run build:ssr && npm run serve:ssr"
   },
   "private": true,
   "dependencies": {
