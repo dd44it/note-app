@@ -5,8 +5,8 @@ import {
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
 
-import fs from "fs";
-import path from "path";
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 import express from 'express';
 import type { Request, Response } from 'express';
@@ -27,18 +27,38 @@ app.use(
   }),
 );
 app
-  .get('/api/public-notes', (req: Request, res: Response) => {
-    const filePath = path.join(process.cwd(), 'dist/note-app/browser/assets/notes.json');
-    const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  .get('/api/public-notes',  async (req: Request, res: Response) => {
+    const filePath = path.join(
+      process.cwd(),
+      'dist',
+      'note-app',
+      'browser',
+      'assets',
+      'notes.json'
+    );
+    const raw = await fs.readFile(filePath, 'utf-8');
+    const data = JSON.parse(raw);
     res.json(data);
 })
-  .get('/api/public-notes/:id', (req: Request, res: Response) => {
-    const id = Number(req.params['id']);
+app.get('/api/public-notes/:id', async (req: Request, res: Response) => {
+  const id = Number(req.params['id']);
 
-    const notes = [
-      { id: 1, title: 'Angular SSR Rocks', content: 'Server-side rendering demo...', public: true },
-      { id: 2, title: 'Why SSR matters', content: 'SEO, performance, caching hhhh...', public: true }
-    ];
+  if (Number.isNaN(id)) {
+    return res.status(400).json({ message: 'Invalid note id' });
+  }
+
+  try {
+    const filePath = path.join(
+      process.cwd(),
+      'dist',
+      'note-app',
+      'browser',
+      'assets',
+      'notes.json'
+    );
+
+    const raw = await fs.readFile(filePath, 'utf-8');
+    const notes: Array<{ id: number }> = JSON.parse(raw);
 
     const note = notes.find(n => n.id === id);
 
@@ -47,6 +67,10 @@ app
     }
 
     return res.json(note);
+  } catch (error) {
+    console.error('Failed to load notes', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
 })
 .get('/api/random-images', async (req: Request, res: Response) => {
   try {
