@@ -3,13 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "start": "ng serve",
-
     "build": "ng build",
-
     "build:ssr": "ng build --configuration production",
-
     "serve:ssr": "node dist/note-app/server/server.mjs",
-
     "start:ssr": "npm run build:ssr && npm run serve:ssr"
   },
   "private": true,
@@ -19,6 +15,7 @@
     "@angular/compiler": "^21.0.5",
     "@angular/core": "^21.0.5",
     "@angular/forms": "^21.0.5",
+    "@angular/material": "^21.0.3",
     "@angular/platform-browser": "^21.0.5",
     "@angular/platform-browser-dynamic": "^21.0.5",
     "@angular/platform-server": "^21.0.5",
