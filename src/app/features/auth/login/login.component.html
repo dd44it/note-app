@@ -1,0 +1,39 @@
+<form class="name-form" novalidate>
+
+  <mat-form-field appearance="outline" class="full-width" subscriptSizing="dynamic">
+    <mat-label>Login</mat-label>
+    <input matInput type="text" placeholder="Enter login" [field]="credentialsForm.login" />
+  </mat-form-field>
+  @let loginerrors = credentialsForm.login().errors();
+  @let loginTouched = credentialsForm.login().touched();
+
+  @if (loginTouched && loginerrors && loginerrors.length > 0) {
+    @for (error of loginerrors; track error) {
+      <mat-error>{{ error.message }}</mat-error>
+    }
+  }
+
+  <mat-form-field appearance="outline" class="full-width" subscriptSizing="dynamic">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" placeholder="Enter password" [field]="credentialsForm.password" />
+  </mat-form-field>
+
+  @let passworderrors = credentialsForm.password().errors();
+  @let passwordTouched = credentialsForm.password().touched();
+
+  @if (passwordTouched && passworderrors && passworderrors.length > 0) {
+    @for (error of passworderrors; track error) {
+      <mat-error>{{ error.message }}</mat-error>
+    }
+  }
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="submit()"
+      [disabled]="!credentialsForm().valid()"
+    >
+      Login
+    </button>
+</form>
