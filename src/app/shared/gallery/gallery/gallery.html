@@ -1,0 +1,22 @@
+<section class="image-section">
+  <div class="container">
+    <h2>Inspiration Gallery</h2>
+
+    <div class="images-grid">
+      @for (img of inspiration$ | async; track img.id; let i = $index) {
+        <ui-image-card
+          [image]="img"
+          (open)="openLightbox(i)">
+        </ui-image-card>
+      }
+    </div>
+  </div>
+</section>
+
+@if (lightboxOpen()) {
+  <ui-image-lightbox
+    [images]="images"
+    [index]="lightboxIndex()"
+    (close)="lightboxOpen.set(false)">
+  </ui-image-lightbox>
+}
