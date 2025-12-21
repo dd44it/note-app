@@ -44,11 +44,14 @@
     </div>
   </section>
 
-  @defer (on viewport; prefetch on idle) {
+  @defer (on viewport) {
     <app-gallery />
   } @placeholder {
-<!--    <app-inspiration-placeholder />-->
-    <span>Loading...</span>
+    <div class="images-grid skeleton">
+      @for (_ of [1,2,3,4,5,6,7,8]; track _) {
+        <div class="img-skeleton"></div>
+      }
+    </div>
   }
 </div>
 

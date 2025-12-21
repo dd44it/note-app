@@ -133,3 +133,19 @@
   border-color: red;
   color: red;
 }
+.img-skeleton {
+  height: 220px;
+  border-radius: 12px;
+  background: linear-gradient(
+    90deg,
+    #e0e0e0 25%,
+    #f5f5f5 37%,
+    #e0e0e0 63%
+  );
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -300px 0; }
+  100% { background-position: 300px 0; }
+}

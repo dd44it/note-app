@@ -1,20 +1,27 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { NgIf } from '@angular/common'
 
 import { InspirationImage } from '../../../core/services/inspiration/inspiration.service'
 
 @Component({
   selector: 'ui-image-card',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './image-card.component.html',
   styleUrl: './image-card.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageCardComponent {
-  @Input() image!: InspirationImage;
-  @Output() open = new EventEmitter<void>();
+  @Input({ required: true }) image!: InspirationImage;
+  @Output() open = new EventEmitter<InspirationImage>();
+  loaded = false;
 
-  openImage() {
-    this.open.emit();
+  onLoad() {
+    this.loaded = true;
+  }
+
+  openImage(): void {
+    this.open.emit(this.image);
   }
 
 }
