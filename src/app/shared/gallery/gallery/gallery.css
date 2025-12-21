@@ -1,4 +1,26 @@
-/* Image cards */
+.featured {
+  margin-top: 32px;
+}
+
+.featured-card {
+  display: block;
+  text-decoration: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  transition: 0.3s;
+}
+
+.featured-card:hover {
+  transform: scale(1.01);
+}
+
+.featured-card img {
+  width: 100%;
+  height: auto;
+}
+
 .images-grid {
   margin-top: 24px;
   display: grid;

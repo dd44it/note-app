@@ -3,25 +3,6 @@
 </app-header>
 
 <div class="main-content">
-  <section class="hero">
-    <div class="container">
-
-      @if (notesStats$ | async; as stats) {
-        @if (stats.latest; as latest) {
-          <div class="featured">
-            <h3>Featured Note</h3>
-            <a [routerLink]="['/note', latest.id]" class="featured-card">
-              <div class="note-content">
-                <h4>{{ latest.title }}</h4>
-                <p>{{ latest.content }}</p>
-              </div>
-            </a>
-          </div>
-        }
-      }
-    </div>
-  </section>
-
   <section class="notes-section">
     <div class="container">
       <h3>Latest Notes</h3>
@@ -32,13 +13,21 @@
             @for (note of notes; track note) {
               <div class="note-card">
                 <div class="note-content">
-                  <h4>{{ note.title }}</h4>
-                  <p>{{ note.content }}</p>
-                  <a [routerLink]="['/note', note.id]" class="read-more">
-                    Read →
-                  </a>
+                  <h4 class="note-title">{{ note.title }}</h4>
+
+                  <p class="note-text">
+                    {{ note.content }}
+                  </p>
                 </div>
+
+                <a
+                  [routerLink]="['/note', note.id]"
+                  class="read-more"
+                >
+                  Read →
+                </a>
               </div>
+
             }
           </div>
         } @else {
