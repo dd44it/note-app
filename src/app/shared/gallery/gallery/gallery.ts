@@ -1,5 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import {InspirationImage, InspirationService} from '../../../core/services/inspiration/inspiration.service';
 import {tap} from 'rxjs';
 import { ImageCardComponent } from '../../ui/image-card/image-card.component';
@@ -11,13 +11,12 @@ import { ImageLightboxComponent } from '../../ui/image-lightbox/image-lightbox.c
   selector: 'app-gallery',
   imports: [
     AsyncPipe,
-    NgFor,
-    NgIf,
     ImageCardComponent,
     ImageLightboxComponent
   ],
   templateUrl: './gallery.html',
   styleUrl: './gallery.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GalleryComponent {
   protected readonly inspirationService = inject(InspirationService);
@@ -32,6 +31,18 @@ export class GalleryComponent {
   openLightbox(index: number) {
     this.lightboxIndex.set(index);
     this.lightboxOpen.set(true);
+  }
+
+  nextImage() {
+    this.lightboxIndex.update((i) =>
+      Math.min(i + 1, this.images.length - 1)
+    );
+  }
+
+  prevImage() {
+    this.lightboxIndex.update((i) =>
+      Math.max(i - 1, 0)
+    );
   }
   // toggleLike(id: string) {
   //   this.likeService.toggleLike(id);

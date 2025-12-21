@@ -18,6 +18,8 @@
   <ui-image-lightbox
     [images]="images"
     [index]="lightboxIndex()"
-    (close)="lightboxOpen.set(false)">
+    (close)="lightboxOpen.set(false)"
+    (next)="nextImage()"
+    (prev)="prevImage()">
   </ui-image-lightbox>
 }

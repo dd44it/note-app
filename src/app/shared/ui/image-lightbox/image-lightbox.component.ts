@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 import { InspirationImage } from '../../../core/services/inspiration/inspiration.service';
 
@@ -7,26 +7,18 @@ import { InspirationImage } from '../../../core/services/inspiration/inspiration
   standalone: true,
   imports: [],
   templateUrl: './image-lightbox.component.html',
-  styleUrls: ['./image-lightbox.component.css']
+  styleUrls: ['./image-lightbox.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageLightboxComponent {
-  @Input() images: InspirationImage[] = [];
-  @Input() index = 0;
+  @Input({ required: true }) images!: InspirationImage[];
+  @Input({ required: true }) index!: number;
+
   @Output() close = new EventEmitter<void>();
+  @Output() next = new EventEmitter<void>();
+  @Output() prev = new EventEmitter<void>();
 
   get current(): InspirationImage {
     return this.images[this.index];
-  }
-
-  next() {
-    if (this.index < this.images.length - 1) this.index++;
-  }
-
-  prev() {
-    if (this.index > 0) this.index--;
-  }
-
-  closeLightbox() {
-    this.close.emit();
   }
 }
