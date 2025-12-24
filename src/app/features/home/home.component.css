@@ -67,11 +67,6 @@
 .read-more:hover {
   text-decoration: underline;
 }
-.footer {
-  text-align: center;
-  padding: 60px 0 20px;
-  color: var(--text-secondary);
-}
 
 .like-bar button {
   background: transparent;

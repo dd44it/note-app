@@ -4,11 +4,18 @@ import { NoteViewComponent } from './public/note-view/note-view.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { HomeComponent } from './features/home/home.component';
 import { LoginComponent } from './features/auth/login/login.component';
+import { LayoutComponent } from './layout/layout/layout/layout.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'note/:id', component: NoteViewComponent },
+    ],
+  },
   { path: 'public', component: NoteListComponent },
-  { path: 'note/:id', component: NoteViewComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'auth/login', component: LoginComponent },
   { path: '**', redirectTo: '' }

@@ -4,8 +4,6 @@ import { RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 import { ThemeToggleComponent } from '../../shared/theme/theme.component';
 import { HeaderComponent } from '../../layout/header/header.component';
-import { ImageCardComponent } from '../../shared/ui/image-card/image-card.component';
-import { ImageLightboxComponent } from '../../shared/ui/image-lightbox/image-lightbox.component';
 import { NotesService, PublicNote } from '../../core/services/notes/notes.service';
 import { GalleryComponent } from '../../shared/gallery/gallery/gallery';
 
@@ -14,7 +12,7 @@ import { GalleryComponent } from '../../shared/gallery/gallery/gallery';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, AsyncPipe, ThemeToggleComponent, HeaderComponent, GalleryComponent, ImageCardComponent, ImageLightboxComponent],
+  imports: [RouterLink, AsyncPipe, ThemeToggleComponent, HeaderComponent, GalleryComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
