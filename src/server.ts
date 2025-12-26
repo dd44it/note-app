@@ -10,6 +10,7 @@ import path from 'node:path';
 
 import express from 'express';
 import type { Request, Response } from 'express';
+import { UnsplashImageApi, InspirationImage } from './app/core/interfacas/image'
 
 import { join } from 'node:path';
 
@@ -96,7 +97,7 @@ app.get('/api/public-notes/:id', async (req: Request, res: Response) => {
 
     const data = await response.json();
 
-    const images = data.map((img: any) => ({
+    const images: InspirationImage[] = data.map((img: UnsplashImageApi) => ({
       id: img.id,
       url: img.urls.regular,
       author: img.user?.name,

@@ -8,7 +8,7 @@ import {ThemeToggleComponent} from '../../../shared/theme/theme.component';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, ThemeToggleComponent],
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.css',
+  styleUrls: ['./layout.component.css'],
 })
 export class LayoutComponent {
   get year (): number {

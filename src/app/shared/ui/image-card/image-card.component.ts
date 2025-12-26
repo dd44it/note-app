@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { NgIf } from '@angular/common'
 
-import { InspirationImage } from '../../../core/services/inspiration/inspiration.service'
+import { InspirationImage } from '../../../core/interfacas/image';
 
 @Component({
   selector: 'ui-image-card',

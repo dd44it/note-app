@@ -4,12 +4,14 @@ import { AsyncPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { TransferState, makeStateKey } from '@angular/core';
 import { Observable, of, switchMap, tap } from 'rxjs';
+import { Note } from '../../core/interfacas/note';
 
 @Component({
   selector: 'app-note-view',
   standalone: true,
   imports: [AsyncPipe],
   templateUrl: './note-view.component.html',
+  styleUrl: './note-view.component.css',
 })
 export class NoteViewComponent {
 
@@ -17,16 +19,18 @@ export class NoteViewComponent {
   private route = inject(ActivatedRoute);
   private state = inject(TransferState);
 
-  note$: Observable<any> = this.route.paramMap.pipe(
+  note$: Observable<Note> = this.route.paramMap.pipe(
     switchMap(params => {
       const id = Number(params.get('id'));
 
-      const KEY = makeStateKey<any>('note-' + id);
+      const KEY = makeStateKey<Note>('note-' + id);
 
-      const cached = this.state.get(KEY, null);
-      if (cached) return of(cached);
+      const cached = this.state.get<Note | null>(KEY, null);
+      if (cached) {
+        return of(cached);
+      }
 
-      return this.http.get(`/api/public-notes/${id}`).pipe(
+      return this.http.get<Note>(`/api/public-notes/${id}`).pipe(
         tap(note => this.state.set(KEY, note))
       );
     })

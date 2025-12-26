@@ -1,18 +1,10 @@
 import { Injectable, inject, PLATFORM_ID, TransferState, makeStateKey } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
-import { of, map, tap, Observable } from 'rxjs';
-import { isPlatformServer } from '@angular/common';
+import { of, tap, Observable } from 'rxjs';
+import { InspirationImage } from '../../interfacas/image';
 
-export interface InspirationImage {
-  url: string;
-  liked?: boolean;
-  id: string;
-  author?: string;
-  link?: string;
-}
-
-const IMAGES_KEY = makeStateKey<any[]>('unsplash-images');
+const IMAGES_KEY = makeStateKey<InspirationImage[]>('unsplash-images');
 
 @Injectable({ providedIn: 'root' })
 export class InspirationService {
@@ -38,18 +30,15 @@ export class InspirationService {
     }
   }
 
-  loadRandomImages(count: number): Observable<any[]> {
+  loadRandomImages(count: number): Observable<InspirationImage[]> {
     const cached = this.state.get(IMAGES_KEY, null);
     if (cached) return of(cached);
 
-    const req = this.http
-      .get<any[]>(`/api/random-images?count=${count}`)
-      .pipe(tap((img) => this.state.set(IMAGES_KEY, img)));
-
-    if (isPlatformServer(this.platform)) return req;
-
-    console.log('req', req)
-    return req;
+    return this.http
+      .get<InspirationImage[]>(`/api/random-images?count=${count}`)
+      .pipe(
+        tap((images) => this.state.set(IMAGES_KEY, images))
+      );
   }
 
   like(url: string) {

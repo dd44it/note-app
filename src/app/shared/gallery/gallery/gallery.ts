@@ -1,10 +1,11 @@
 import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import {InspirationImage, InspirationService} from '../../../core/services/inspiration/inspiration.service';
+import { InspirationService } from '../../../core/services/inspiration/inspiration.service';
 import {tap} from 'rxjs';
 import { ImageCardComponent } from '../../ui/image-card/image-card.component';
 import { ImageLightboxComponent } from '../../ui/image-lightbox/image-lightbox.component';
 // import { LikeService } from '../../core/services/like/like.service';
+import { InspirationImage } from '../../../core/interfacas/image';
 
 @Component({
   standalone: true,

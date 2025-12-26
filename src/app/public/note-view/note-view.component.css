@@ -1,0 +1,23 @@
+.note-page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.note-title {
+  font-size: 2rem;
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.note-body {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+  white-space: pre-line;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 32px;
+  color: var(--link);
+}
